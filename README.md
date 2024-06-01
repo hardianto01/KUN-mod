@@ -33,6 +33,8 @@ Wuthering Waves pak mods
 
 11.God mode
 
+12.Perception Range(Plants seem ineffective)
+
 # How to modify pak
 
 1.Unpacking pak11 using [Fmodel](https://github.com/4sval/FModel)
