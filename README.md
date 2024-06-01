@@ -1,6 +1,7 @@
 # wuwa-mod
 Wuthering Waves pak mods
-
+[![Discord](https://discordapp.com/api/guilds/637265123144237061/widget.png?style=shield)](https://discord.com/invite/nfnUhqW8EY)
+[QQGroup](https://qm.qq.com/q/FVX6QpU5qi)
 
 # How to use
 1.Place the mod file in the  \Wuthering Waves\Wuthering Waves Game\Client\Content\Paks\\~mod\
