@@ -7,7 +7,7 @@ Wuthering Waves pak mods
 
 2.find Wuthering Waves\Wuthering Waves Game\Client\Binaries\Win64\Client-Win64-Shipping.exe
 
-3.run game with command line "-fileopenlog"
+3.run game with command lin(startupArguments) "-fileopenlog"
 
 # Functions
 
