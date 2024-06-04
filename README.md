@@ -18,13 +18,13 @@ Wuthering Waves pak mods
 
 2.Automatically pick up treasure 
 
-3.Skip the plot (have issues)
+~~3.Skip the plot (have issues)~~
 
 4.Ignoring falling damage
 
-<ins>5.free monthcard ，store（Visual Only）</ins>
+5.free monthcard ，store（Visual Only）
 
-6.Custom uid 
+6.fake uidview
 
 7.Disable anti cheat 
 
@@ -37,6 +37,10 @@ Wuthering Waves pak mods
 11.God mode
 
 12.Perception Range(Plants seem ineffective)(WIP)
+
+13.Always Sunny (Night will still come. Just the weather)
+
+14.kill Aura
 
 # How to modify pak
 
