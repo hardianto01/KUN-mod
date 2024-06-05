@@ -40,7 +40,9 @@ Wuthering Waves pak mods
 
 13.Always Sunny (Night will still come. Just the weather)
 
-14.kill Aura
+14.kill Aura（wip，Now the radius is the whole world）
+
+15.AutoAbsorb
 
 # How to modify pak
 
