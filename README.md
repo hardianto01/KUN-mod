@@ -1,8 +1,8 @@
 # wuwa-mod
 Wuthering Waves pak mods
 
-[![Discord](https://discordapp.com/api/guilds/1026295403282436097/widget.png?style=shield)](https://discord.com/invite/nfnUhqW8EY)
-[![QQ群](https://i.postimg.cc/MGqtP1P8/image.png)](https://discord.gg/QYu59wctHT)
+[![Discord](https://discordapp.com/api/guilds/1026295403282436097/widget.png?style=shield)](https://discord.gg/QYu59wctHT)
+[![QQ群](https://i.postimg.cc/MGqtP1P8/image.png)](https://qm.qq.com/q/FVX6QpU5qi)
 
 
 # How to use
