@@ -140,13 +140,13 @@ let SceneItemHitComponent =
 
     OnSceneItemHit(t, e) {
 
-        if(ModManager_1.ModManager.Settings.HitMultiplier === true){
+        if(ModManager_1.ModManager.Settings.HitMultiplier ){
             let attacker = EntitySystem_1.EntitySystem.Get(t.Attacker.Id);
             if (
-              attacker.GetComponent(0).GetEntityType() !==
-              Protocol_1.Aki.Protocol.EEntityType.Player
+              attacker.GetComponent(0).GetEntityType() !==Protocol_1.Aki.Protocol.EEntityType.Player
             )
-              return;
+            {return;}
+              
             //物品倍功
             for (let j = 0; j < 15; j++) {
               this.OnSceneItemHitOne(t, e);

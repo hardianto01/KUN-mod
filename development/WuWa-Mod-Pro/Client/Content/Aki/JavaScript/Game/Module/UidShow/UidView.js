@@ -12,18 +12,22 @@ class UidView extends UiViewBase_1.UiViewBase {
   }
   OnStart() {
     //const uidtext ="QQ群:746634670 | https://github.com/Gktwo/wuwa-mod"
-
-    //  ModManager_1.ModManager.AddToggle("GodMode","Numpad0");//done
-    //  ModManager_1.ModManager.AddToggle("HitMultiplier","Numpad1");//done
-    //  ModManager_1.ModManager.AddToggle("AutoPickTreasure","Numpad2");//done
-    //  //ModManager_1.ModManager.AddToggle("AntiDither","f4");//done
-    //  ModManager_1.ModManager.AddToggle("AutoAbsorb","Numpad3");//done
-    //  //ModManager_1.ModManager.AddToggle("InfiniteStamina","f6");
-    //  ModManager_1.ModManager.AddToggle("killAura","Numpad4");//done
-    //  ModManager_1.ModManager.AddToggle("PerceptionRange","Numpad5");//done
+//f5到f12 8个键
+     ModManager_1.ModManager.AddToggle("GodMode","f5");
+     ModManager_1.ModManager.AddToggle("HitMultiplier","f6");
+    ModManager_1.ModManager.AddToggle("AutoPickTreasure","f7");//done
+    // ModManager_1.ModManager.AddToggle("AntiDither","f8");//done
+     ModManager_1.ModManager.AddToggle("AutoAbsorb","f8");//done
+    // ModManager_1.ModManager.AddToggle("InfiniteStamina","f10");
+      ModManager_1.ModManager.AddToggle("killAura","f9");
+      
+     ModManager_1.ModManager.AddToggle("PerceptionRange","f10");//done
     //  ModManager_1.ModManager.AddToggle("Weather","Numpad6");//done
-     ModManager_1.ModManager.AddKey("ShowMenu","k");//done
-     ModManager_1.ModManager.AddKey("MarkTp","t");//done
+    ModManager_1.ModManager.AddToggle("NoCD","f11");
+      ModManager_1.ModManager.AddKey("ShowMenu","k");
+
+      ModManager_1.ModManager.AddKey("PlayerSpeed","f12");
+     //ModManager_1.ModManager.AddKey("MarkTp","t");//done
 
 
      //ModManager_1.ModManager.AddToggle("MarkTp","t");//done

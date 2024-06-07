@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: !0 }),
   (exports.ModManager = void 0);
 const puerts_1 = require("puerts"),
   UE = require("ue"),
+  Info_1 = require("../../Core/Common/Info"),
+  Log_1 = require("../../Core/Common/Log"),
   InputSettings_1 = require("../../InputSettings/InputSettings"),
   TeleportController_1 = require("../../Module/Teleport/TeleportController"),//传送
   CreatureController_1 = require("../../World/Controller/CreatureController"),//add
@@ -22,23 +24,54 @@ class ModManager{
     static Settings = {
       GodMode : true ,
       HitMultiplier : true,
-      //FakeFreeStore : false,
-      AutoPickTreasure : false,
+      AutoPickTreasure : true,
       AntiDither : true,
-      AutoAbsorb : false,
-      InfiniteStamina : false,
+      AutoAbsorb : true,
+      NoCD : true,
+      InfiniteStamina : true,
       killAura : false,
-      PerceptionRange : false,
+      PerceptionRange : true,
       Weather : false,
       WeatherType : 1,
       MarkTp : true,
       CustomTp : false,
-      playerSpeed :3,
+      playerSpeedValue :3,
+      PlayerSpeed :false,
+
 
       Uid : "QQ群:746634670 | Github:https://github.com/Gktwo/wuwa-mod | Discord:https://discord.gg/QYu59wctHT",
 
     };
+    // OnStart() {
+    //   this.AddKey("ShowMenu","k");
+    //   this.AddToggle("GodMode","p");
+    // }
+    // OnTick(){/cant use
+    //       //add my code
+    // if(this.listenKey("ShowMenu","k"))
+    //   {
+    //     this.ShowMenu();
+    //   }//done
 
+    //   this.listenMod('GodMode',"p");//done
+    //   //ModManager_1.ModManager.listenMod('HitMultiplier',"6");//done    
+    // //  ModManager_1.ModManager.listenMod('AutoPickTreasure',"Numpad2");//done
+    // //  //ModManager_1.ModManager.listenMod('AntiDither',"f4");//done
+    // //  ModManager_1.ModManager.listenMod('AutoAbsorb',"Numpad3");//done
+    // //  //ModManager_1.ModManager.listenMod('InfiniteStamina',"f7");
+    // //  ModManager_1.ModManager.listenMod('killAura',"Numpad4");//done
+    // // ModManager_1.ModManager.listenMod('PerceptionRange',"Numpad5");
+    // //  if(ModManager_1.ModManager.listenMod('Weather',"Numpad6")){
+    // //   ModManager_1.ModManager.ChangWeather(ModManager_1.ModManager.Settings.WeatherType)
+    // //  }
+    //  //ModManager_1.ModManager.listenKey('PlayerSpeed',"Numpad7");
+    // //  if(ModManager_1.ModManager.listenKey("MarkTp","t")){
+    // //   ModManager_1.ModManager.MarkTp();
+    // //  }//done
+    //  //ModManager_1.ModManager.listenMod('CustomTp',"Numpad7");
+    //  //ModManager_1.ModManager.listenKey('Previous',"PageUp");
+    //  //ModManager_1.ModManager.listenKey('Next',"PageDown");
+    // }
 
     static AddToggle(desc,key){
       InputSettings_1.InputSettings.AddActionMapping(desc,key); 
@@ -55,15 +88,19 @@ class ModManager{
     static listenMod(func,key){
       if(InputSettings_1.InputSettings.IsInputKeyDown(key)===true)
         {
-          this.Toggle(func);
-          //this.TPtest();
-          return true;
-          
+          this.ShowTip("Toggle");
+          if (this.Settings.hasOwnProperty(func)) {
+            this.Settings[func] = !this.Settings[func];
+                  
+          }
+    
         }
-        return false ;
+       // return false ;
     }
     static listenKey(desc,key){
+      //this.ShowTip("Toggle");
       return InputSettings_1.InputSettings.IsInputKeyDown(key);
+
     }
     static SetUid(uid){
      //TODO
@@ -127,17 +164,20 @@ class ModManager{
     static ShowMenu(){//封号那个窗口
       var newBox = new ConfirmBoxDefine_1.ConfirmBoxDataNew(50);
       var state = 
-      this.FuncState(this.Settings.GodMode,"GodMode")+
-      this.FuncState(this.Settings.HitMultiplier,"HitMultiplier")+
-      this.FuncState(this.Settings.AutoPickTreasure,"AutoPickTreasure")+
-      this.FuncState(this.Settings.AntiDither,"AntiDither")+
-      this.FuncState(this.Settings.AutoAbsorb,"AutoAbsorb")+
-      this.FuncState(this.Settings.killAura,"killAura")+
-      this.FuncState(this.Settings.PerceptionRange,"PerceptionRange")+
-      this.FuncState(this.Settings.MarkTp,"MarkTp")+
-      this.FuncState(this.Settings.CustomTp,"CustomTp")+
-      this.FuncState(this.Settings.InfiniteStamina,"InfiniteStamina")
-      //this.FuncState(this.Settings.PerceptionRange)+
+      this.FuncState(this.Settings.GodMode,"GodMode F5")+
+      this.FuncState(this.Settings.HitMultiplier,"HitMultiplier F6")+
+      this.FuncState(this.Settings.AutoPickTreasure,"AutoPickTreasure F7")+
+      //this.FuncState(this.Settings.AntiDither,"AntiDither")+
+      this.FuncState(this.Settings.AutoAbsorb,"AutoAbsorb F8" )+
+      this.FuncState(this.Settings.killAura,"killAura F9")+
+      this.FuncState(this.Settings.PerceptionRange,"PerceptionRange F10")+
+      this.FuncState(this.Settings.NoCD,"NoCD F11" )+
+      this.FuncState(this.Settings.PlayerSpeed,"PlayerSpeed F12" )
+      //this.FuncState(this.Settings.NoCD,"NoCD")
+      //this.FuncState(this.Settings.MarkTp,"MarkTp")+
+      //this.FuncState(this.Settings.CustomTp,"CustomTp")+
+      //this.FuncState(this.Settings.InfiniteStamina,"InfiniteStamina")
+
 
 
       newBox.SetTextArgs(state);

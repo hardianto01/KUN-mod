@@ -164,18 +164,31 @@ class InputController extends ControllerBase_1.ControllerBase {
         ModManager_1.ModManager.ShowMenu();
       }//done
 
-    //  ModManager_1.ModManager.listenMod('GodMode',"Numpad0");//done
-    //  ModManager_1.ModManager.listenMod('HitMultiplier',"Numpad1");//done    
-    //  ModManager_1.ModManager.listenMod('AutoPickTreasure',"Numpad2");//done
-    //  //ModManager_1.ModManager.listenMod('AntiDither',"f4");//done
-    //  ModManager_1.ModManager.listenMod('AutoAbsorb',"Numpad3");//done
-    //  //ModManager_1.ModManager.listenMod('InfiniteStamina',"f7");
-    //  ModManager_1.ModManager.listenMod('killAura',"Numpad4");//done
-    // ModManager_1.ModManager.listenMod('PerceptionRange',"Numpad5");
+      ModManager_1.ModManager.listenMod('GodMode',"f5");//done
+      ModManager_1.ModManager.listenMod('HitMultiplier',"f6");//done    
+      ModManager_1.ModManager.listenMod('AutoPickTreasure',"f7");//done
+      
+      //ModManager_1.ModManager.listenMod('AntiDither',"f8");//done
+      ModManager_1.ModManager.listenMod('AutoAbsorb',"f8");//done
+      //ModManager_1.ModManager.listenMod('InfiniteStamina',"f10");
+      ModManager_1.ModManager.listenMod('killAura',"f9");//done
+      
+      ModManager_1.ModManager.listenMod('PerceptionRange',"f10");
+      ModManager_1.ModManager.listenMod('NoCD',"f11");
     //  if(ModManager_1.ModManager.listenMod('Weather',"Numpad6")){
     //   ModManager_1.ModManager.ChangWeather(ModManager_1.ModManager.Settings.WeatherType)
     //  }
-     //ModManager_1.ModManager.listenKey('PlayerSpeed',"Numpad7");
+    if(ModManager_1.ModManager.listenKey("PlayerSpeed","f12")){
+      ModManager_1.ModManager.Toggle('PlayerSpeed')
+      if(ModManager_1.ModManager.Settings.PlayerSpeed){
+        ModManager_1.ModManager.SetPlayerSpeed(3)
+      }
+      else{
+        ModManager_1.ModManager.SetPlayerSpeed(1)
+      }
+      
+
+     }
     //  if(ModManager_1.ModManager.listenKey("MarkTp","t")){
     //   ModManager_1.ModManager.MarkTp();
     //  }//done
