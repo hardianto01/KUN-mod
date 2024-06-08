@@ -40,7 +40,7 @@ const UE = require("ue"),
   ModelManager_1 = require("../../Manager/ModelManager"),
   SceneInteractionManager_1 = require("../../Render/Scene/Interaction/SceneInteractionManager"),
   BulletUtil_1 = require("../Bullet/BulletUtil"),
-  ModManager_1 = require("../../Manager/ModManager"),//add my code
+  ModManager_1 = require("../../Manager/ModManager"), //add my code
   SceneItemHitUtils_1 = require("./Util/SceneItemHitUtils");
 class ComponentHitReg {
   constructor() {
@@ -139,21 +139,20 @@ let SceneItemHitComponent =
     }
 
     OnSceneItemHit(t, e) {
-
-        if(ModManager_1.ModManager.Settings.HitMultiplier ){
-            let attacker = EntitySystem_1.EntitySystem.Get(t.Attacker.Id);
-            if (
-              attacker.GetComponent(0).GetEntityType() !==Protocol_1.Aki.Protocol.EEntityType.Player
-            )
-            {return;}
-              
-            //物品倍功
-            for (let j = 0; j < 15; j++) {
-              this.OnSceneItemHitOne(t, e);
-            }
-
-        }
-
+      //var attacker = EntitySystem_1.EntitySystem.Get(t.Attacker.Id);
+      if (ModManager_1.ModManager.Settings.HitMultiplier === true) {
+        // if (
+        //   attacker.GetComponent(0).GetEntityType() ===
+        //   Protocol_1.Aki.Protocol.EEntityType.Player
+        // ){
+          //物品倍功
+          for (let j = 0; j < 15; j++) {
+            this.OnSceneItemHitOne(t, e);
+          }
+          return ;
+        //}
+      }
+      this.OnSceneItemHitOne(t, e);
     }
     GetPenetrationType() {
       return this.Entity.GetComponent(0).GetBaseInfo().Category

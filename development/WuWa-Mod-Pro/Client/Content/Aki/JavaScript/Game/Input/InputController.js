@@ -15,8 +15,16 @@ const UE = require("ue"),
   InputMappingsDefine_1 = require("../Ui/InputDistribute/InputMappingsDefine"),
   InputEnums_1 = require("./InputEnums"),
   ModManager_1 = require("../Manager/ModManager"),//add my code
+  InputSettings_1 = require("../InputSettings/InputSettings"),
+  keys_State = {},
   KEY_RELEASED_TIME = -1;
+  
 class InputController extends ControllerBase_1.ControllerBase {
+  constructor() {
+    super(...arguments),
+    (this.key_State = false);
+    //();
+}
   static get Model() {
     return ModelManager_1.ModelManager.InputModel;
   }
@@ -157,38 +165,72 @@ class InputController extends ControllerBase_1.ControllerBase {
   static SetMoveControlEnabled(t, n, e, i) {
     (this.Zve = t), (this.eMe = n), (this.tMe = e), (this.iMe = i);
   }
+  
+
+
+  static IsMyKeyDown(str) { //add key func
+    var IsInputKeyDown_1 = InputSettings_1.InputSettings.IsInputKeyDown(str);
+    if (IsInputKeyDown_1 && !this.key_State){
+      this.key_State = true;
+        return true;
+    }
+    if (!IsInputKeyDown_1) {
+      this.key_State = false;
+        return false;
+    }
+    return false;
+  }
+
+  static IsMyKeyUp(str) {
+    if (!keys_State[str]) {
+      keys_State[str] = { key_Down: false, key_Up: false };
+    }
+    var keyState = keys_State[str];
+    var IsInputKeyDown_1 = InputSettings_1.InputSettings.IsInputKeyDown(str);
+    if (IsInputKeyDown_1 && !keyState.key_Down) {
+      keyState.key_Down = true;
+      keyState.key_Up = false;
+    }
+    if (!IsInputKeyDown_1 && keyState.key_Down && !keyState.key_Up) {
+      keyState.key_Up = true;
+    }
+    if (keyState.key_Down && keyState.key_Up) {
+      keyState.key_Down = false;
+      keyState.key_Up = false;
+      return true;
+    }
+    return false;
+  }
   static InputAxis(t, n) {
     //add my code
-    if(ModManager_1.ModManager.listenKey("ShowMenu","k"))
-      {
+    if(ModManager_1.ModManager.listenKey('ShowMenu',"Home")){    
         ModManager_1.ModManager.ShowMenu();
       }//done
 
-      ModManager_1.ModManager.listenMod('GodMode',"f5");//done
-      ModManager_1.ModManager.listenMod('HitMultiplier',"f6");//done    
-      ModManager_1.ModManager.listenMod('AutoPickTreasure',"f7");//done
-      
-      //ModManager_1.ModManager.listenMod('AntiDither',"f8");//done
-      ModManager_1.ModManager.listenMod('AutoAbsorb',"f8");//done
+        ModManager_1.ModManager.listenMod('GodMode',"F5");//done
+      ModManager_1.ModManager.listenMod('HitMultiplier',"F6");//done    
+      ModManager_1.ModManager.listenMod('AutoPickTreasure',"F7");//done        
+      ModManager_1.ModManager.listenMod('AutoAbsorb',"F8");//done    
+      ModManager_1.ModManager.listenMod('killAura',"F9");//done   
+      ModManager_1.ModManager.listenMod('PerceptionRange',"F10");
+      ModManager_1.ModManager.listenMod('NoCD',"F11");
+      if(ModManager_1.ModManager.listenMod('PlayerSpeed',"F12")){        
+        if(ModManager_1.ModManager.Settings.PlayerSpeed){
+          ModManager_1.ModManager.SetPlayerSpeed(3);
+        }
+        else{
+          ModManager_1.ModManager.SetPlayerSpeed(1);
+        }}
+
       //ModManager_1.ModManager.listenMod('InfiniteStamina',"f10");
-      ModManager_1.ModManager.listenMod('killAura',"f9");//done
-      
-      ModManager_1.ModManager.listenMod('PerceptionRange',"f10");
-      ModManager_1.ModManager.listenMod('NoCD',"f11");
-    //  if(ModManager_1.ModManager.listenMod('Weather',"Numpad6")){
-    //   ModManager_1.ModManager.ChangWeather(ModManager_1.ModManager.Settings.WeatherType)
-    //  }
-    if(ModManager_1.ModManager.listenKey("PlayerSpeed","f12")){
-      ModManager_1.ModManager.Toggle('PlayerSpeed')
-      if(ModManager_1.ModManager.Settings.PlayerSpeed){
-        ModManager_1.ModManager.SetPlayerSpeed(3)
-      }
-      else{
-        ModManager_1.ModManager.SetPlayerSpeed(1)
-      }
+      //ModManager_1.ModManager.listenMod('AntiDither',"f8");//done
+     //if(ModManager_1.ModManager.listenMod('Weather',"Numpad6")){
+      //ModManager_1.ModManager.ChangWeather(ModManager_1.ModManager.Settings.WeatherType)
+     //}
+
       
 
-     }
+     
     //  if(ModManager_1.ModManager.listenKey("MarkTp","t")){
     //   ModManager_1.ModManager.MarkTp();
     //  }//done

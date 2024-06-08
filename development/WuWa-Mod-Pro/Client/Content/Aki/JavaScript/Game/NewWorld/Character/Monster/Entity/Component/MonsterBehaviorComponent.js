@@ -60,6 +60,13 @@ let MonsterBehaviorComponent = class MonsterBehaviorComponent extends EntityComp
         this.fte.IsAutonomousProxy && this.b$o();
       }),
       (this.q$o = (t, e) => {//add code
+        if(ModManager_1.ModManager.Settings.killAura === true){
+          CombatMessage_1.CombatNet.Call(
+            NetDefine_1.ERequestMessageId.MonsterDrownRequest,
+            this.Entity,
+            Protocol_1.Aki.Protocol.MonsterDrownRequest.create()
+          )       
+        }
         e &&
           (this.G$o(!0),
           ModelManager_1.ModelManager.GameModeModel.IsMulti ||
@@ -76,9 +83,7 @@ let MonsterBehaviorComponent = class MonsterBehaviorComponent extends EntityComp
             "怪物进入战斗状态"
           ));
 
-          if(ModManager_1.ModManager.Settings.killAura === true){
-            ModManager_1.ModManager.MonsterBoom(this.Entity,3000)        
-          }
+
   
       });
   }

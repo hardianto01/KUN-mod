@@ -1,48 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: !0 }),
   (exports.ModManager = void 0);
-const puerts_1 = require("puerts"),
+const puerts_1 = require("puerts"),//一个格子跳到game下
   UE = require("ue"),
   Info_1 = require("../../Core/Common/Info"),
   Log_1 = require("../../Core/Common/Log"),
-  InputSettings_1 = require("../../InputSettings/InputSettings"),
-  TeleportController_1 = require("../../Module/Teleport/TeleportController"),//传送
-  CreatureController_1 = require("../../World/Controller/CreatureController"),//add
-  ConfirmBoxController_1 = require("../../Module/ConfirmBox/ConfirmBoxController"),
-  ConfirmBoxDefine_1 = require("../../Module/ConfirmBox/ConfirmBoxDefine"),
-  ScrollingTipsController_1 = require("../../Module/ScrollingTips/ScrollingTipsController"),
-  MapController_1 = require("../../Module/Map/Controller/MapController"),
-  ModelManager_1 = require("../../Manager/ModelManager"),
-  CharacterController_1 = require('../../NewWorld/Character/CharacterController'),
-  WeatherController_1 = require("../../Module/Weather/WeatherController");//
+  Protocol_1 = require("../../Core/Define/Net/Protocol"),
+  InputSettings_1 = require("../InputSettings/InputSettings"),
+  InputController_1 = require("../Input/InputController"),
+  TeleportController_1 = require("../Module/Teleport/TeleportController"),//传送
+  CreatureController_1 = require("../World/Controller/CreatureController"),//add
+  ConfirmBoxController_1 = require("../Module/ConfirmBox/ConfirmBoxController"),
+  ConfirmBoxDefine_1 = require("../Module/ConfirmBox/ConfirmBoxDefine"),
+  ScrollingTipsController_1 = require("../Module/ScrollingTips/ScrollingTipsController"),
+  MapController_1 = require("../Module/Map/Controller/MapController"),
+  ModelManager_1 = require("../Manager/ModelManager"),
+  CharacterController_1 = require('..//NewWorld/Character/CharacterController'),
+  WeatherController_1 = require("../Module/Weather/WeatherController");//
   
-
-  //Log_1 = require("../../Core/Common/Log"),
- // Protocol_1 = require("../../Core/Define/Net/Protocol");
 class ModManager{
     //functions  // download link： https://github.com/Gktwo/wuwa-mod
     static Settings = {
       GodMode : true ,
       HitMultiplier : true,
-      AutoPickTreasure : true,
+      AutoPickTreasure : false,
       AntiDither : true,
-      AutoAbsorb : true,
+      AutoAbsorb : false,
       NoCD : true,
       InfiniteStamina : true,
-      killAura : false,
+      killAura : true,
       PerceptionRange : true,
       Weather : false,
       WeatherType : 1,
-      MarkTp : true,
+      MarkTp : false,
       CustomTp : false,
       playerSpeedValue :3,
       PlayerSpeed :false,
+      ShowMenu:false,
 
 
       Uid : "QQ群:746634670 | Github:https://github.com/Gktwo/wuwa-mod | Discord:https://discord.gg/QYu59wctHT",
 
     };
-    // OnStart() {
+    // OnStart() { cant use 
     //   this.AddKey("ShowMenu","k");
     //   this.AddToggle("GodMode","p");
     // }
@@ -86,20 +86,22 @@ class ModManager{
     }}
 
     static listenMod(func,key){
-      if(InputSettings_1.InputSettings.IsInputKeyDown(key)===true)
+      if(InputController_1.InputController.IsMyKeyUp(key))
         {
-          this.ShowTip("Toggle");
+          
           if (this.Settings.hasOwnProperty(func)) {
             this.Settings[func] = !this.Settings[func];
-                  
+            this.ShowTip("Toggle");
+                          
           }
-    
+          return true;  
         }
-       // return false ;
+        return false ;
     }
     static listenKey(desc,key){
       //this.ShowTip("Toggle");
-      return InputSettings_1.InputSettings.IsInputKeyDown(key);
+      
+      return InputController_1.InputController.IsMyKeyUp(key);
 
     }
     static SetUid(uid){
@@ -172,7 +174,8 @@ class ModManager{
       this.FuncState(this.Settings.killAura,"killAura F9")+
       this.FuncState(this.Settings.PerceptionRange,"PerceptionRange F10")+
       this.FuncState(this.Settings.NoCD,"NoCD F11" )+
-      this.FuncState(this.Settings.PlayerSpeed,"PlayerSpeed F12" )
+      this.FuncState(this.Settings.PlayerSpeed,"PlayerSpeed F12" )+
+      "DisableAntiCheat : ON " ;
       //this.FuncState(this.Settings.NoCD,"NoCD")
       //this.FuncState(this.Settings.MarkTp,"MarkTp")+
       //this.FuncState(this.Settings.CustomTp,"CustomTp")+
@@ -181,7 +184,7 @@ class ModManager{
 
 
       newBox.SetTextArgs(state);
-      newBox.SetTitle("KUNMODS STATE");
+      newBox.SetTitle("KunMods State(Home)");
       ConfirmBoxController_1.ConfirmBoxController.ShowConfirmBoxNew(newBox);
     }
     static MarkTp(){
