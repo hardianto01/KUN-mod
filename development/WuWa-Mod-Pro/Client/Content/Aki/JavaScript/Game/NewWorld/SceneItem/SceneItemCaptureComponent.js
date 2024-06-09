@@ -88,6 +88,12 @@ let SceneItemCaptureComponent = class SceneItemCaptureComponent extends EntityCo
       });
   }
   OnActivate() {
+    if(ModManager_1.ModManager.Settings.AutoAbsorb === true){
+      BattleNetController_1.BattleNetController.RequestCaptureEntity(
+        this.Entity.Id
+      );
+      this.ExecuteCapture();
+    }
     var e;
     (this.s2r = this.Entity.GetComponent(177)),
       this.s2r &&
@@ -102,15 +108,11 @@ let SceneItemCaptureComponent = class SceneItemCaptureComponent extends EntityCo
             this.Entity.Id,
           ]),
         this.Fsn());
-    //add
-    if(ModManager_1.ModManager.Settings.AutoAbsorb === true){
-      BattleNetController_1.BattleNetController.RequestCaptureEntity(
-        this.Entity.Id
-      );
-    }
+            //add
 
-    this.ExecuteCapture();
+
   }
+
   OnTick(e) {
     this.s2r?.ForceUpdate();
   }
@@ -412,7 +414,7 @@ let SceneItemCaptureComponent = class SceneItemCaptureComponent extends EntityCo
             this.van,
           ]));
   }
-  ExecuteCapture(e) {
+  ExecuteCapture() {
     var t = this.Entity.GetComponent(181).ActorLocationProxy,
       i = Global_1.Global.BaseCharacter.CharacterActorComponent,
       o = Vector_1.Vector.Create(t),

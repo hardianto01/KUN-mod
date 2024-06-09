@@ -43,7 +43,7 @@ let SceneItemTreasureBoxComponent =
         (this.Onn = void 0),
         (this.Qin = () => {
           this.knn(),
-            this.Entity.CheckGetComponent(116).IsInState(2) && this.Fnn();
+            this.Entity.CheckGetComponent(116).IsInState(ModManager_1.ModManager.Settings.AutoPickTreasure?1:2) && this.Fnn();
         }),
         (this.Vnn = (e) => {
           this.knn();
@@ -54,7 +54,7 @@ let SceneItemTreasureBoxComponent =
     }
     OnInitData(e) {
       e = e.GetParam(SceneItemTreasureBoxComponent_1)[0];
-      return (this.Nnn = e?.TypeId), !0; //宝箱类型
+      return (this.Nnn = e?.TypeId), !0;
     }
     OnStart() {
       var e = this.Entity.GetComponent(0),
@@ -115,7 +115,7 @@ let SceneItemTreasureBoxComponent =
         !0
       );
     }
-    knn() {// add patch code
+    knn() {
       var e = this.Entity.CheckGetComponent(116),
         t = this.Entity.CheckGetComponent(176);
       let n = void 0,
@@ -123,33 +123,21 @@ let SceneItemTreasureBoxComponent =
       switch (e.State) {
         case 1:
           n = this.Entity.CheckGetComponent(114).IsLocked
-            ? ((r = -1107341031), -1491083225) // 解锁，封锁
-            : ((r = -1491083225), -1107341031); // 封锁，解锁
-          // 如果宝箱未锁定且设置了自动获取奖励，则调用Fnn方法
-          if (
-            !this.Entity.CheckGetComponent(114).IsLocked &&
-            ModManager_1.ModManager.Settings.AutoPickTreasure === true
-          ) {
-            this.Fnn();
-          }
+            ? ((r = -1107341031), -1491083225)
+            : ((r = -1491083225), -1107341031);
           break;
         case 2:
           (r = -1107341031), (n = -1526657280);
-          break;
       }
-      if (void 0 !== n && this.Onn !== n) {
-        t.NotifyLock++;
-        if (void 0 !== r && this.Onn === r) {
-          t.RemoveTagById(r);
-        }
-        this.Onn = n;
-        t.AddTagById(n);
-        t.NotifyLock--;
-      }
+      void 0 !== n &&
+        this.Onn !== n &&
+        (t.NotifyLock++,
+        void 0 !== r && this.Onn === r && t.RemoveTagById(r),
+        (this.Onn = n),
+        t.AddTagById(n),
+        t.NotifyLock--);
     }
-
     Fnn() {
-      //get cheat
       ModelManager_1.ModelManager.PlayerInfoModel.GetId() ===
         ModelManager_1.ModelManager.CreatureModel.GetWorldOwner() &&
         LevelGamePlayController_1.LevelGamePlayController.MultiplayerLimitTypeCheck(

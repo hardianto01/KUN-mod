@@ -28,11 +28,14 @@ class UidView extends UiViewBase_1.UiViewBase {
  // ModManager_1.ModManager.AddToggle("InfiniteStamina","f10");
      //ModManager_1.ModManager.AddToggle("MarkTp","t");//done
     const uidtext = ModManager_1.ModManager.Settings.Uid;
+    
+
     LguiUtil_1.LguiUtil.SetLocalText(
       this.GetText(0),
       "FriendMyUid",
       uidtext
     );
+    
   }
 }
 exports.UidView = UidView;

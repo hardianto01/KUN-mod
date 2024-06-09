@@ -15,21 +15,24 @@ const puerts_1 = require("puerts"),//一个格子跳到game下
   ScrollingTipsController_1 = require("../Module/ScrollingTips/ScrollingTipsController"),
   MapController_1 = require("../Module/Map/Controller/MapController"),
   ModelManager_1 = require("../Manager/ModelManager"),
-  CharacterController_1 = require('..//NewWorld/Character/CharacterController'),
-  WeatherController_1 = require("../Module/Weather/WeatherController");//
+  CharacterController_1 = require("..//NewWorld/Character/CharacterController"),
+  UidView_1 = require("../Module/UidShow/UidView"),
+  LguiUtil_1 = require("../Module/Util/LguiUtil"),
+  WeatherController_1 = require("../Module/Weather/WeatherController"),
+  WorldDebugModel_1 = require("../World/Model/WorldDebugModel");//
   
 class ModManager{
     //functions  // download link： https://github.com/Gktwo/wuwa-mod
     static Settings = {
       GodMode : true ,
-      HitMultiplier : true,
+      HitMultiplier : false,
       AutoPickTreasure : false,
-      AntiDither : true,
+      AntiDither : false,
       AutoAbsorb : false,
-      NoCD : true,
-      InfiniteStamina : true,
-      killAura : true,
-      PerceptionRange : true,
+      NoCD : false,
+      InfiniteStamina : false,
+      killAura : false,
+      PerceptionRange : false,
       Weather : false,
       WeatherType : 1,
       MarkTp : false,
@@ -104,10 +107,7 @@ class ModManager{
       return InputController_1.InputController.IsMyKeyUp(key);
 
     }
-    static SetUid(uid){
-     //TODO
 
-    }
 
     static TPtest()
     {    
@@ -135,6 +135,16 @@ class ModManager{
       WeatherController_1.WeatherController.TestChangeWeather(weatherID)
       //1.sunny 2.Cloudy 3.ThunderRain 4.Snow 5.rain
     }
+
+    // static SetUidView(string){
+    //   //UidView_1.UidView.setlo
+    //   LguiUtil_1.LguiUtil.SetLocalText(
+    //     this.GetText(0),
+    //     "FriendMyUid",
+    //     string
+    //   );
+
+    // }
 
     static ShowConfirmBox(string,title){//封号那个窗口
       var newBox = new ConfirmBoxDefine_1.ConfirmBoxDataNew(50);
@@ -200,13 +210,32 @@ class ModManager{
       this.TpNoloadingTo(v.X * 100, v.Y * 100, v.Z * 100)
 
     }
+    static GetEntityList(){
+      return  ModelManager_1.ModelManager.CreatureModel.GetAllEntities()
+    }
+    //example
+    // static SetTimeDilation(t) {
+    //   var e = ModelManager_1.ModelManager.CreatureModel;
+    //   for (const r of e.GetAllEntities()) r.IsInit && r.Entity.SetTimeDilation(t);
+    //   for (const a of e.DelayRemoveContainer.GetAllEntities())
+    //     a.IsInit && a.Entity.SetTimeDilation(t);
+    // }
+    static SpawnEntity(){
+
+    }
 
     static SetPlayerSpeed(value)
     {
       CharacterController_1.CharacterController.SetTimeDilation(value)     
     }
+    //自定义传送
 
     static CustomTp(){
+      this.AddKey("PreviousFile","PageUp");
+      this.AddKey("NextFile","PageDown");
+      this.AddKey("Previous","Up");
+      this.AddKey("Next","Down");
+
 
     }
 
