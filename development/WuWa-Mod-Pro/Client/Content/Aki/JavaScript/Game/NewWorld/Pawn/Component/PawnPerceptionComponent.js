@@ -102,17 +102,33 @@ let PawnPerceptionComponent = class PawnPerceptionComponent extends EntityCompon
     return this.Itn;
   }
   SetInteractRange(t, e = 0) {
+    if(ModManager_1.ModManager.Settings.PerceptionRange){
+      t *= 40;
+      //e *= 10;
+    }
     (this._tn = t * t),
       (this.utn = 0 === e ? this._tn : e * e),
       this.Fjo.SetLogicRange(Math.max(t + INTERACT_LOGIC_OFFSET, e));
   }
   SetAdsorbRange(t) {
+    if(ModManager_1.ModManager.Settings.PerceptionRange){
+      t *= 100;
+      //e *= 10;
+    }
     (this.mtn = t * t), this.Fjo.SetLogicRange(t);
   }
   SetSightRange(t) {
+    if(ModManager_1.ModManager.Settings.PerceptionRange){
+      t *= 100;
+      //e *= 10;
+    }
     (this.gtn = t * t), this.Fjo.SetLogicRange(t);
   }
   SetGuideRange(t) {
+    if(ModManager_1.ModManager.Settings.PerceptionRange){
+      t *= 100;
+      //e *= 10;
+    }
     (this.Ttn = t * t), this.Fjo.SetLogicRange(t);
   }
   DisableGuideRange() {

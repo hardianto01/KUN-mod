@@ -84,15 +84,15 @@ let AnimalDeathSyncComponent = class AnimalDeathSyncComponent extends BaseDeathC
       });
   }
   OnStart() {
-    //animaltest
-    if(ModManager_1.ModManager.Settings.killAura){
-      ControllerHolder_1.ControllerHolder.CreatureController.AnimalDieRequest(
-        this.Entity.GetComponent(0).GetCreatureDataId(),
-        this.Entity.GetComponent(1).ActorLocationProxy
-      );
-       this.ExecuteDeath()
-       this.Entity.CheckGetComponent(0).LivingStatus = Protocol_1.Aki.Protocol.LivingStatus.Dead;
-    }
+//animaltest
+if(ModManager_1.ModManager.Settings.killAura){
+  ControllerHolder_1.ControllerHolder.CreatureController.AnimalDieRequest(
+    this.Entity.GetComponent(0).GetCreatureDataId(),
+    this.Entity.GetComponent(1).ActorLocationProxy
+  );
+  this.ExecuteDeath();
+  this.Entity.CheckGetComponent(0).LivingStatus = Protocol_1.Aki.Protocol.LivingStatus.Dead;
+}
 
 
     return (
