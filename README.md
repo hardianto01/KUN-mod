@@ -19,7 +19,7 @@ Wuthering Waves pak mods
 
 2. Automatically pick up treasure 
 
-~~3. Skip the plot (have issues)~~
+3. Skip the plot (have issues)
 
 4. Ignoring falling damage
 
@@ -29,7 +29,7 @@ Wuthering Waves pak mods
 
 7. Disable anti cheat 
 
-8. Disable Dither Effect
+8. Disable Dither Effect (Model transparency)
 
 9. Disable log reporter 
 
@@ -41,7 +41,7 @@ Wuthering Waves pak mods
 
 13. Always Sunny (Night will still come. Just the weather)
 
-14. Kill Aura（wip，Now the radius is the whole world）
+14. Kill Aura（whole world or hatred）
 
 15. AutoAbsorb
 
