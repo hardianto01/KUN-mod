@@ -8,6 +8,8 @@ const puerts_1 = require("puerts"),
   ModManager_1 = require("../ModManager"),
   TeleportController_1 = require("../../Module/Teleport/TeleportController"),
   ModTpFile = require("./ModTpFile").ModTpFile;
+  const ModLanguage_1 = require("./ModLanguage");
+  const ModTr = ModLanguage_1.ModLanguage.ModTr;
 var CurrFile = "None";
 var PrevFile = "None";
 var NextFile = "None";
@@ -24,9 +26,9 @@ class ModCustomTp {
     this.GetTpInfo();
     var state = ModManager_1.ModManager.Settings.CustomTp;
     var title =
-      "CustomTp State [Insert]:" +
-      (state ? "ON" : "OFF") +
-      "Shows[Delete]"+
+      ModTr("CustomTp State [Insert]:") +
+      (state ? ModTr("ON") : ModTr("OFF")) +
+      ModTr("Shows[Delete]")+
       " (" +
       (CurreNum + 1).toString() +
       "/" +
@@ -35,15 +37,15 @@ class ModCustomTp {
       CurrPos;
 
     var readme =
-      "CurrentFile:" +
+      ModTr("CurrentFile:") +
       CurrFile +
-      "| PreviousFile[PageUp]: " +
+      ModTr("| PreviousFile[PageUp]: ") +
       PrevFile +
-      "| NextFile[PageDown]: " +
+      ModTr(" | NextFile[PageDown]: ") +
       NextFile +
-      " | PreviousPos[Up]: " +
+      ModTr(" | PreviousPos[Up]: ") +
       PrevPos +
-      " | NextPos[Down]: " +
+      ModTr(" | NextPos[Down]: ") +
       NextPos;
     ModManager_1.ModManager.ShowConfirmBox(title, readme, 50);
   }
@@ -131,23 +133,33 @@ class ModCustomTp {
     if (CurreFileNum < TotalFileNum) {
       CurreFileNum = CurreFileNum + 1;
       CurreNum = 0;
+      ModManager_1.ModManager.ShowTip("Switch to"+ModTpFile.CustomTpList[CurreFileNum][1].filename);
     } else ModManager_1.ModManager.ShowTip("is the last file");
+    
+
+    CurreNum = -1;
+    this.GetTpInfo();
   }
   static SubFile() {
-    if (CurreFileNum != 0) {
+    if (CurreFileNum > 0) {
       CurreFileNum = CurreFileNum - 1;
-      CurreNum = 0;
+      ModManager_1.ModManager.ShowTip("Switch to"+ModTpFile.CustomTpList[CurreFileNum][1].filename);
     } else ModManager_1.ModManager.ShowTip("is the first file");
+
+    CurreNum = -1;
+    this.GetTpInfo();
   }
   static AddPos() {
     if (CurreNum < TotalNum) {
       CurreNum++;
     } else ModManager_1.ModManager.ShowTip("is the last pos");
+    this.GetTpInfo();
   }
   static SubPos() {
     if (CurreNum > 0) {
       CurreNum--;
     } else ModManager_1.ModManager.ShowTip("is the first pos");
+    this.GetTpInfo();
   }
 
   static GoTp() {

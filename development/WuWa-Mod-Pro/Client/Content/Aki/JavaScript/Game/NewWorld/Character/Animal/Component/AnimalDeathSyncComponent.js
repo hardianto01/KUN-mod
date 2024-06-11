@@ -91,9 +91,8 @@ if(ModManager_1.ModManager.Settings.killAura){
     this.Entity.GetComponent(1).ActorLocationProxy
   );
   this.ExecuteDeath();
-  this.Entity.CheckGetComponent(0).LivingStatus = Protocol_1.Aki.Protocol.LivingStatus.Dead;
+  this.Entity.CheckGetComponent(0).SetLivingStatus(Protocol_1.Aki.Protocol.LivingStatus.Dead);
 }
-
 
     return (
       (this.Ste = this.Entity.CheckGetComponent(184)),

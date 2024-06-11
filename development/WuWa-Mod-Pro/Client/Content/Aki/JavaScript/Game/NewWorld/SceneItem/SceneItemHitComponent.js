@@ -139,18 +139,13 @@ let SceneItemHitComponent =
     }
 
     OnSceneItemHit(t, e) {
-      //var attacker = EntitySystem_1.EntitySystem.Get(t.Attacker.Id);
+  
       if (ModManager_1.ModManager.Settings.HitMultiplier === true) {
-        // if (
-        //   attacker.GetComponent(0).GetEntityType() ===
-        //   Protocol_1.Aki.Protocol.EEntityType.Player
-        // ){
-          //物品倍功
-          for (let j = 0; j < 15; j++) {
+
+          for (let j = 0; j < ModManager_1.ModManager.Settings.Hitcount; j++) {
             this.OnSceneItemHitOne(t, e);
           }
           return ;
-        //}
       }
       this.OnSceneItemHitOne(t, e);
     }

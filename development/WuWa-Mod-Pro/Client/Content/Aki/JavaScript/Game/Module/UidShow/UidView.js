@@ -11,7 +11,7 @@ class UidView extends UiViewBase_1.UiViewBase {
     this.ComponentRegisterInfos = [[0, UE.UIText]];
   }
   OnStart() {
-    ModManager_1.ModManager.AddModkeys();
+    ModManager_1.ModManager.ModStart();
 
     const uidtext = ModManager_1.ModManager.Settings.Uid;
 

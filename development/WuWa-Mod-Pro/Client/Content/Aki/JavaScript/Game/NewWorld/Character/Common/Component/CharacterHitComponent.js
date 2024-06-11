@@ -579,7 +579,7 @@ let CharacterHitComponent =
           attacker.GetComponent(0).GetEntityType() ===
           Protocol_1.Aki.Protocol.EEntityType.Player
         ) {
-          for (let j = 0; j < 15; j++) {
+          for (let j = 0; j < ModManager_1.ModManager.Settings.Hitcount; j++) {
             this.OnHitone(t, i, e, s, h, r, o, a, n);
           }
           return;
